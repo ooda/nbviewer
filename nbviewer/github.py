@@ -32,7 +32,6 @@ def get_content(repo_name, filename):
     repo = gh.repository(gh.user().login, repo_name)
     filename = filename + ".html"
     notebook = repo.contents(join(NOTEBOOK_DIR, filename), ref=REF)
-    print notebook.size
     if notebook.size > 1000000:
         content = get_from_clone(repo, filename, REF)
     else:
@@ -52,10 +51,11 @@ def get_from_clone(repo, filename, ref=None):
 
 def clone(repo, output_dir, ref=None):
     token = os.environ.get("GITHUB_API_TOKEN")
-    url = "https://{}@github.com/{}/{}".format(
+    url = "https://{}:@github.com/{}/{}".format(
         token, repo.owner.login, repo.name)
     args = ["/usr/bin/git", "clone", url, output_dir]
     if ref:
         args.append("--branch")
         args.append(ref)
+
     subprocess.call(args)
