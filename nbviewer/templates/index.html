@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block headscripts %}
+<!-- Call this block from 'base' -->
+{{super()}}
+
+<!-- CSS using LESS. Make sure to include less.js *before* your CSS -->
+<link rel="stylesheet/less" type="text/css" href="/static/css/app.less" />
+<script src="/static/js/other/less.js" type="text/javascript"></script>
+{% endblock headscripts %}
+
+{% block content %}
+<div>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>OODA R&D</h1>
+      <p>R&D reports for each of our projects</p>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <ul class="list-unstyled">
+        {% for key, value in listing.iteritems() %}
+        <li class="repo"><h3>{{ key }}</h3>
+        <ul class="list-unstyled">
+          {% for item in value %}
+          <li class="notebook">
+          <a href={{"/notebook/" + key + "/" + item|urlencode }}> {{ item }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        </li>
+
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+

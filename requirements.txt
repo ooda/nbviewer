@@ -1,0 +1,8 @@
+# Cloudly requirements
+
+# nbviewer requirements
+flask==0.10.1
+requests==2.2.0
+gunicorn==18.0
+git+https://github.com/ooda/cloudly.git@master#egg=cloudly-master
+newrelic
