@@ -15,6 +15,7 @@ import os
 import traceback
 
 from flask import Flask, jsonify, request
+from flask.ext.basicauth import BasicAuth
 from werkzeug.exceptions import default_exceptions
 from werkzeug.exceptions import HTTPException
 
@@ -26,6 +27,14 @@ FORMAT = "%(asctime)s] %(levelname)s %(module)s %(funcName)s: %(message)s"
 
 # The application
 app = Flask(__name__)
+
+# Site-wide basic auth.
+app.config['BASIC_AUTH_USERNAME'] = os.environ.get("NBVIEWER_USERNAME")
+app.config['BASIC_AUTH_PASSWORD'] = os.environ.get("NBVIEWER_PASSWORD")
+app.config['BASIC_AUTH_FORCE'] = True
+
+basic_auth = BasicAuth(app)
+
 
 # Debugging
 app.debug = True
