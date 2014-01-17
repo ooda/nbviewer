@@ -3,6 +3,7 @@
 # nbviewer requirements
 flask==0.10.1
 Flask-BasicAuth==0.2.0
+Flask-SSLify==0.1.4
 requests==2.2.0
 gunicorn==18.0
 newrelic==2.8.0.7
