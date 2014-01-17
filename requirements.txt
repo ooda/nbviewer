@@ -4,5 +4,6 @@
 flask==0.10.1
 requests==2.2.0
 gunicorn==18.0
+newrelic==2.8.0.7
+github3.py==0.8.0
 git+https://github.com/ooda/cloudly.git@master#egg=cloudly-master
-newrelic
