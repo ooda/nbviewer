@@ -7,7 +7,7 @@ from github3 import login
 
 gh = login(token=os.environ.get("GITHUB_API_TOKEN"))
 NOTEBOOK_DIR = 'notebooks'
-REF = 'emr-update'
+REF = 'master'
 
 
 def get_listing():
