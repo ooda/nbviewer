@@ -28,6 +28,10 @@ div.text_cell_render {
   font-size: 150%;
 }
 
+div.text_cell_render li {
+  line-height: 130%;
+}
+
 .prompt{
   display: None;
 }
