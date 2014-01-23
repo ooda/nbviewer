@@ -15,7 +15,6 @@ import os
 import traceback
 
 from flask import Flask, jsonify, request
-from flask.ext.basicauth import BasicAuth
 from flask_sslify import SSLify
 from werkzeug.exceptions import default_exceptions
 from werkzeug.exceptions import HTTPException
@@ -23,6 +22,7 @@ from werkzeug.exceptions import HTTPException
 from cloudly import logger
 from cloudly.notify import notify as cloudly_notify
 from nbviewer.metric import evt
+from nbviewer.basicauth import MyBasicAuth
 
 FORMAT = "%(asctime)s] %(levelname)s %(module)s %(funcName)s: %(message)s"
 
@@ -30,8 +30,6 @@ FORMAT = "%(asctime)s] %(levelname)s %(module)s %(funcName)s: %(message)s"
 app = Flask(__name__)
 
 # Site-wide basic auth credentials
-app.config['BASIC_AUTH_USERNAME'] = os.environ.get("NBVIEWER_USERNAME")
-app.config['BASIC_AUTH_PASSWORD'] = os.environ.get("NBVIEWER_PASSWORD")
 app.config['BASIC_AUTH_FORCE'] = True
 
 # Debugging
@@ -44,7 +42,7 @@ app.config['SECRET_KEY'] = os.environ.get("WEBAPP_SESSION_SECRET_KEY",
                                           'oftg09jW2FtbXfcud9OS')
 
 # Add basic authentication site-wide.
-basic_auth = BasicAuth(app)
+basic_auth = MyBasicAuth(app)
 
 # SSLify the app, will redirect all HTTP to HTTPS
 sslify = SSLify(app)
